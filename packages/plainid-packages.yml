@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=plainid
+packages:
+  - language: javascript
+    registry: npm
+    name: plainid-pdp-sdk
+    url: https://www.npmjs.com/package/plainid-pdp-sdk
+    install: npm install plainid-pdp-sdk
+    version: 0.1.7
+    description: PlainID Policy Decision Point (PDP) SDK
+    official: false
+    official_note: >-
+      Name and description reference PlainID's PDP but the npm package publishes
+      no repository, author, or homepage metadata, so first-party ownership could
+      not be verified. Treated as unofficial until confirmed.
+notes: >-
+  No first-party packages were found on PyPI (pypi.org/project/plainid 404),
+  and no public PlainID GitHub organization was resolvable (api.github.com/orgs/PlainID
+  404). PlainID integration is primarily via the Runtime/Management REST APIs
+  rather than published client SDKs.

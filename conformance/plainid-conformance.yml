@@ -1,0 +1,46 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.plainid.io/apidocs/authentication-mgmt-apis.md
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Management APIs authenticate via an OAuth 2.0 Client Credentials flow;
+      runtime credentials issued and validated per tenant.
+  - id: oidc
+    conforms: true
+    evidence: >-
+      Tenant token endpoint is a Keycloak OpenID Connect realm
+      (/protocol/openid-connect/token); IDP integration for tenant login.
+  - id: jwt-rfc7519
+    conforms: true
+    evidence: >-
+      Runtime API accepts identity JWTs verified against the issuer JWKS URL;
+      PDP can return JWT responses.
+  - id: token-exchange-rfc8693
+    conforms: true
+    evidence: >-
+      Legacy management auth used OAuth 2.0 Token Exchange against the tenant
+      authorization endpoint (now superseded by Client Credentials).
+  - id: xacml-abac-pbac
+    conforms: true
+    evidence: >-
+      Policy-Based / Attribute-Based Access Control platform with a Policy
+      Decision Point (permit/deny), Policy Information Points, and Policy
+      Authorization Agents (PDP/PIP/PEP model).
+  - id: opa-rego
+    conforms: true
+    evidence: >-
+      Policy authoring supports Structured Rego export
+      (https://docs.plainid.io/apidocs/structured-rego.md).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No application/problem+json error format documented.
+  - id: scim2
+    conforms: false
+    evidence: No SCIM 2.0 provisioning surface found in the API reference.
+notes: >-
+  PlainID publishes security badges on its data-security page but no named
+  certification text (SOC 2 / ISO 27001) could be verified from public pages, so
+  no Compliance pointer is asserted. This conformance file records standards
+  evidenced by the API reference only.

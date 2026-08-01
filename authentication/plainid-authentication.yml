@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.plainid.io/apidocs/authentication-1.md
+docs:
+  runtime: https://docs.plainid.io/apidocs/authentication-1.md
+  management: https://docs.plainid.io/apidocs/authentication-mgmt-apis.md
+  token_exchange: https://docs.plainid.io/apidocs/about-token-exchange.md
+summary:
+  types: [apiKey, oauth2, http]
+  api_key_in: [header, body]
+  oauth2_flows: [clientCredentials, tokenExchange]
+  notes: >-
+    PlainID exposes two authentication surfaces. Runtime (PDP) Authorization
+    APIs authenticate with a clientId/clientSecret pair (request body or the
+    X-Client-Id / X-Client-Secret headers) or a JWT bearer token verified
+    against the configured issuer JWKS. Management / Administration APIs use an
+    OAuth 2.0 Client Credentials flow (which replaces the older IDP token-exchange
+    flow) against the tenant Keycloak realm, returning a Bearer access token.
+schemes:
+  - name: RuntimeClientCredentials
+    surface: runtime
+    type: apiKey
+    in: header
+    parameters: [X-Client-Id, X-Client-Secret]
+    alt_location: request body (clientId, clientSecret)
+    required_fields: [clientId, entityId]
+    description: >-
+      Runtime Authorization (PDP) API credentials. clientId and entityId are
+      mandatory on every runtime call even when a JWT is also supplied.
+    source: https://docs.plainid.io/apidocs/authentication-1.md
+  - name: RuntimeJWTBearer
+    surface: runtime
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: >-
+      Optional identity JWT verified against the issuer JWKS URL configured under
+      Tenant Management > Policy Authorization Agents. Supplies identity
+      attributes for the access decision; invalid JWTs yield no attributes.
+    source: https://docs.plainid.io/apidocs/authentication-1.md
+  - name: ManagementClientCredentials
+    surface: management
+    type: oauth2
+    flow: clientCredentials
+    token_url: https://auth.<base-plainid-url>/auth/realms/<tenant-subdomain>/protocol/openid-connect/token
+    token_type: Bearer
+    description: >-
+      OAuth 2.0 Client Credentials flow against the tenant Keycloak realm.
+      Client credentials are created at the Tenant or Environment level and
+      replace the legacy IDP token-exchange flow. The returned token is sent as
+      an Authorization Bearer header on Management and Administration API calls.
+    source: https://docs.plainid.io/apidocs/authentication-mgmt-apis.md

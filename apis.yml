@@ -1,22 +1,71 @@
 aid: plainid
 name: PlainID
-description: 'PlainID is a company surfaced as a portfolio company of insight-partners and added to the
-  API Evangelist network as a stub for enrichment. Sector: cybersecurity. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  PlainID is an enterprise authorization company whose Policy-Based Access
+  Control (PBAC) platform, "The Authorization Platform," controls what identities
+  (human and AI agent) can access, do, and expose across data, APIs, applications,
+  and AI systems. The platform centralizes policy authoring and externalizes
+  runtime access decisions through a Policy Decision Point (PDP), Policy
+  Information Points (PIP), and Policy Authorization Agents. PlainID exposes three
+  public REST API families: Runtime Authorization APIs (permit/deny decisions,
+  policy resolution, user access tokens, PDP cache invalidation), Management APIs
+  (policy, asset-template, application, mapper, and identity-template CRUD plus
+  orchestration and SaaS-vendor management), and Administration APIs (audit
+  events, API client credentials, platform reports). PlainID is backed by Insight
+  Partners.
 url: https://raw.githubusercontent.com/api-evangelist/plainid/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - insight-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-public-api-surface
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://logo.clearbit.com/plainid.com
 tags:
 - Company
 - Cybersecurity
-apis: []
+- Authorization
+- Access Control
+- PBAC
+- Identity
+- Policy Management
+- API Security
+apis:
+- name: PlainID Authorization Platform API
+  description: >-
+    Runtime Authorization (PDP permit/deny, policy resolution, user access token,
+    cache invalidation), Management (policy/asset/application/mapper/identity CRUD,
+    orchestration, SaaS vendors), and Administration (audit, client credentials,
+    reports) REST APIs for the PlainID Authorization Platform.
+  humanURL: https://docs.plainid.io/v1-api
+  baseURL: https://tenant.us1.plainid.io/api/runtime
+  tags:
+  - Authorization
+  - Access Control
+  - PBAC
+  - Policy
+  properties:
+  - type: Documentation
+    url: https://docs.plainid.io/v1-api
+  - type: APIReference
+    url: https://docs.plainid.io/apidocs/authorization-apis.md
+  - type: Authentication
+    url: authentication/plainid-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +74,42 @@ maintainers:
 common:
 - type: Website
   url: https://www.plainid.com/
+- type: DeveloperPortal
+  url: https://docs.plainid.io/
+- type: Documentation
+  url: https://docs.plainid.io/v1-api
+- type: APIReference
+  url: https://docs.plainid.io/apidocs/authorization-apis.md
+- type: GettingStarted
+  url: https://docs.plainid.io/docs/getting-started-2.md
+- type: Blog
+  url: https://www.plainid.com/resources/?category=blog
+- type: Support
+  url: https://plainid.atlassian.net/servicedesk/customer/portals
+- type: StatusPage
+  url: https://status.plainid.io
+- type: PrivacyPolicy
+  url: https://www.plainid.com/privacy-policy/
+- type: TermsOfService
+  url: https://www.plainid.com/terms-of-use/
+- type: Authentication
+  url: authentication/plainid-authentication.yml
+- type: Conventions
+  url: conventions/plainid-conventions.yml
+- type: Conformance
+  url: conformance/plainid-conformance.yml
+- type: Lifecycle
+  url: lifecycle/plainid-lifecycle.yml
+- type: DomainSecurity
+  url: security/plainid-domain-security.yml
+- type: Packages
+  url: packages/plainid-packages.yml
+- type: WellKnown
+  url: well-known/plainid-well-known.yml
+- type: LLMsTxt
+  url: llms/plainid-llms.txt
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 7
+  pass: local-v1

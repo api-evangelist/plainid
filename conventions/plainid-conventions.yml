@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.plainid.io/llms.txt
+docs: https://docs.plainid.io/v1-api
+summary: >-
+  Cross-cutting conventions for the PlainID Authorization Platform APIs, derived
+  from the published API reference (Document360). No machine-readable OpenAPI is
+  published; semantics below are captured from the docs.
+authentication:
+  runtime: clientId/clientSecret (body or X-Client-Id/X-Client-Secret headers) or JWT bearer
+  management: OAuth 2.0 Client Credentials -> Bearer token (Keycloak realm)
+  reference: authentication/plainid-authentication.yml
+base_urls:
+  runtime: https://<tenant>.<region>.plainid.io/api/runtime
+  runtime_example: https://acme-finance.us1.plainid.io/api/runtime/permit-deny/v3
+  management_token: https://auth.<base-plainid-url>/auth/realms/<tenant>/protocol/openid-connect/token
+versioning:
+  style: uri-path-per-operation
+  notes: >-
+    Individual endpoints carry their own version segment rather than a single
+    global API version. Runtime decision endpoint is /permit-deny/v3, with a
+    newer V5 permit-deny endpoint for API access; Management import/export/policy
+    operations are versioned v2.
+  observed_versions: [runtime v3, runtime v5, management v2]
+idempotency:
+  supported: false
+  notes: No documented idempotency-key mechanism was found in the API reference.
+error_handling:
+  deny_reason: >-
+    Runtime authorization responses can carry a structured deny reason explaining
+    a deny decision.
+  reference: https://docs.plainid.io/apidocs/working-with-deny-reason.md
+response_features:
+  - combinedMultiValue handling (https://docs.plainid.io/apidocs/working-with-combinedmultivalue.md)
+  - assetContext (https://docs.plainid.io/apidocs/working-with-assetcontext.md)
+  - calculated attributes (https://docs.plainid.io/apidocs/working-with-calculated-attributes.md)
+  - multi-identity policy evaluation (https://docs.plainid.io/apidocs/working-with-multi-identity-policy-evaluation.md)
+  - PDP JWT responses (https://docs.plainid.io/apidocs/working-with-pdp-jwt-responses.md)
+caching:
+  identity_cache_invalidation: https://docs.plainid.io/apidocs/identity-cache-invalidation-2.md
+  pdp_response_cache_invalidation: https://docs.plainid.io/apidocs/pdp-response-cache-invalidation-2.md
+cross_links:
+  authentication: authentication/plainid-authentication.yml
+  lifecycle: lifecycle/plainid-lifecycle.yml
+  conformance: conformance/plainid-conformance.yml

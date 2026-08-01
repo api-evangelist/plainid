@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: probed
+source: live probes of PlainID hosts
+hosts:
+  - host: https://docs.plainid.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+  - host: https://www.plainid.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+notes: >-
+  No .well-known discovery documents were served at the public docs or marketing
+  hosts. Per-tenant runtime/management hosts (<tenant>.<region>.plainid.io) may
+  expose an OpenID Connect configuration, but tenant hosts are not publicly
+  enumerable. No raw well-known files were saved (no 200 responses).
